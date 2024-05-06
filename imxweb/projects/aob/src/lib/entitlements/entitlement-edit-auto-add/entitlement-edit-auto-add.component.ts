@@ -49,8 +49,11 @@ export class EntitlementEditAutoAddComponent implements OnDestroy {
 
   public sqlExpression: SqlWizardExpression;
 
-  public checkChanges(): void {
-    this.exprHasntChanged = _.isEqual(this.data.sqlExpression, this.sqlExpression);
+  public checkChanges(expression: SqlExpression): void {
+    this.exprHasntChanged = _.isEqual(expression, this.sqlExpression.Expression);
+    if (!this.exprHasntChanged) {
+      this.sqlExpression.Expression = expression;
+    }
   }
 
   public get controlsInvalid(): boolean {
@@ -99,7 +102,8 @@ export class EntitlementEditAutoAddComponent implements OnDestroy {
     }
 
     const entitlementToAdd = this.entitlementToAddWrapperService.buildTypedEntities(elements);
-    const saveChanges: { save: boolean; map: boolean } = await this.sidesheet.open(MappedEntitlementsPreviewComponent, {
+    const saveChanges: { save: boolean; map: boolean } = await this.sidesheet
+      .open(MappedEntitlementsPreviewComponent, {
         title: await this.translateService.get('#LDS#Heading View Matching Application Entitlements').toPromise(),
         subTitle: this.data.application.GetEntity().GetDisplay(),
         padding: '0px',

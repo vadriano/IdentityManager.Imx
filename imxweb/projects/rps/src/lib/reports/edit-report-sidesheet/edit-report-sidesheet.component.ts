@@ -88,8 +88,11 @@ export class EditReportSidesheetComponent implements OnInit, OnDestroy {
   public lastSavedExpression: SqlExpression;
   public exprHasntChanged = true;
 
-  public checkChanges(): void {
-    this.exprHasntChanged = _.isEqual(this.sqlExpression?.Expression, this.lastSavedExpression);
+  public checkChanges(expression: SqlExpression): void {
+    this.exprHasntChanged = _.isEqual(expression, this.lastSavedExpression);
+    if (!this.exprHasntChanged) {
+      this.sqlExpression.Expression = expression;
+    }
   }
 
   @ViewChild(SqlWizardComponent) private sqlwizard: SqlWizardComponent;
@@ -143,7 +146,9 @@ export class EditReportSidesheetComponent implements OnInit, OnDestroy {
       // is it a list report?
       this.cdrList.push(await this.buildTableCdr());
     }
-    this.cdrList.push(this.data.isReadonly ? new BaseReadonlyCdr(this.report.AvailableTo.Column): new BaseCdr(this.report.AvailableTo.Column));
+    this.cdrList.push(
+      this.data.isReadonly ? new BaseReadonlyCdr(this.report.AvailableTo.Column) : new BaseCdr(this.report.AvailableTo.Column)
+    );
   }
 
   public addCdr(control: AbstractControl): void {
