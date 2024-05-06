@@ -77,8 +77,8 @@ export class DynamicRoleComponent implements OnInit {
 
   public async ngOnInit(): Promise<void> {
     this.canEdit = this.roleService.canEdit;
-    if(!this.canEdit) {
-      this.LdsNoDynamicRole = '#LDS#Currently, no identities automatically become members through a dynamic role.'
+    if (!this.canEdit) {
+      this.LdsNoDynamicRole = '#LDS#Currently, no identities automatically become members through a dynamic role.';
     }
     await this.loadDynamicRole();
     this.resetState();
@@ -104,9 +104,7 @@ export class DynamicRoleComponent implements OnInit {
         }
         await this.dynamicGroup.GetEntity().Commit(true);
       } else {
-        const e = <WriteExtTypedEntity<{ NewDynamicRole: SqlExpression }>>(
-          this.dataManagementService.entityInteractive
-        );
+        const e = <WriteExtTypedEntity<{ NewDynamicRole: SqlExpression }>>this.dataManagementService.entityInteractive;
         e.extendedData = { NewDynamicRole: this.sqlExpression.Expression };
         await e.GetEntity().Commit(true);
         this.uidDynamicGroup = e.GetEntity().GetColumn('UID_DynamicGroup').GetValue();
@@ -162,9 +160,10 @@ export class DynamicRoleComponent implements OnInit {
     }
   }
 
-  public checkChanges(): void {
-    this.exprHasntChanged = _.isEqual(this.sqlExpression?.Expression, this.lastSavedExpression);
+  public checkChanges(expression: SqlExpression): void {
+    this.exprHasntChanged = _.isEqual(expression, this.lastSavedExpression);
     if (!this.exprHasntChanged) {
+      this.sqlExpression.Expression = expression;
       this.dataManagementService.autoMembershipDirty(true);
     } else if (this.cdrsHaventChanged && this.exprHasntChanged) {
       this.dataManagementService.autoMembershipDirty(false);
@@ -211,13 +210,12 @@ export class DynamicRoleComponent implements OnInit {
           this.sqlExpression.Expression.LogOperator = LogOp.AND;
         }
 
-        this.cdrList = this.canEdit ? [
-          new BaseCdr(this.dynamicGroup.UID_DialogSchedule.Column),
-          new BaseCdr(this.dynamicGroup.IsCalculateImmediately.Column),
-        ] : [
-          new BaseReadonlyCdr(this.dynamicGroup.UID_DialogSchedule.Column),
-          new BaseReadonlyCdr(this.dynamicGroup.IsCalculateImmediately.Column),
-        ];
+        this.cdrList = this.canEdit
+          ? [new BaseCdr(this.dynamicGroup.UID_DialogSchedule.Column), new BaseCdr(this.dynamicGroup.IsCalculateImmediately.Column)]
+          : [
+              new BaseReadonlyCdr(this.dynamicGroup.UID_DialogSchedule.Column),
+              new BaseReadonlyCdr(this.dynamicGroup.IsCalculateImmediately.Column),
+            ];
       }
     } finally {
       this.busy = false;
@@ -225,7 +223,9 @@ export class DynamicRoleComponent implements OnInit {
   }
 
   private hasValuesSet(sqlExpression: SqlExpression, checkCurrent: boolean = false): boolean {
-    const current = !checkCurrent || (sqlExpression.Value != null && (Object.keys(sqlExpression.Value).length > 0 || typeof sqlExpression.Value === 'boolean'));
+    const current =
+      !checkCurrent ||
+      (sqlExpression.Value != null && (Object.keys(sqlExpression.Value).length > 0 || typeof sqlExpression.Value === 'boolean'));
 
     if (sqlExpression.Expressions?.length > 0) {
       return current && sqlExpression.Expressions.every((elem) => this.hasValuesSet(elem, true));

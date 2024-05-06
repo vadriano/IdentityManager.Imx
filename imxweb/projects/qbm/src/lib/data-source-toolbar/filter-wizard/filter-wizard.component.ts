@@ -120,8 +120,11 @@ export class FilterWizardComponent implements OnDestroy {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 
-  public checkChanges(): void {
-    this.expressionDirty = !_.isEqual(this.sqlExpression?.Expression, this.lastGoodExpression);
+  public checkChanges(expression: SqlExpression): void {
+    this.expressionDirty = !_.isEqual(expression, this.lastGoodExpression);
+    if (this.expressionDirty) {
+      this.sqlExpression.Expression = expression;
+    }
     this.expressionInvalid =
       !_.isEqual(this.sqlExpression?.Expression, this.emptyExpression?.Expression) && isExpressionInvalid(this.sqlExpression);
   }
