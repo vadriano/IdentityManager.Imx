@@ -6,6 +6,10 @@
 
 ### May 6, 2024
 
+The package versions have been updated to 9.2.1.
+
+We are integrating [Compodoc](https://compodoc.app/) to provide Angular documentation for our components. Please see the [Documentation](#documentation) section for more information on how to generate documentation.
+
 The v92 branch has been updated with fixes for the following issues.
 
 **Important**: Integrating these changes will require a server-side hotfix for the issue 454356 to be installed.
@@ -16,25 +20,24 @@ The v92 branch has been updated with fixes for the following issues.
 - 454356: Data Explorer identities needs to load interactive entities.
 - 453350/447417/453346: Fixed issues where the filter wizard could enter an inconsistent state
 - 453132: Fixed an issue in the attestation policy editor where the "objects matching the condition" were not displayed hierarchically
-* 438231: Added documentation of some basic components
+- 438231: Added documentation of some basic components
 - 450070: Fixed an issue where switching to another page while loading a page caused an error
 - 453932: Fixed an issue where approving multiple requests in bulk could cause an error
-* 452878: Updated package versions to 9.2.1
 - 439918: Fixed some issues in the product bundles component
 - 450675: Fixed an issue where some help text was shown in an incorrect language
 - 452886: Fixed an issue in the attestation policy editor
-* 449616: Fixed an issue where reports could not be saved in format other then PDF
-* 450404: Fixed an issue in the overview of attestation case approvers.
-* 442324: Duplicate (additional) "Target system" columns in the Data Explorer
-* 448531: Fixed a scrolling issue on the organizational chart view
-* 449891: Fixed the inherited group membership pagination
+- 449616: Fixed an issue where reports could not be saved in format other then PDF
+- 450404: Fixed an issue in the overview of attestation case approvers.
+- 442324: Duplicate (additional) "Target system" columns in the Data Explorer
+- 448531: Fixed a scrolling issue on the organizational chart view
+- 449891: Fixed the inherited group membership pagination
 - 448406: Fixed an issue where the list of entitlements assigned to a role was incomplete
 - 418493: Fixed an issue in the overview of request approvers
-* 447713: Fixed a styling issue with the login button
-* 449124: Fixed the declaration of the metadata service
-* 447723: Fixed an issue with additional columns in a grouped table view
-* 442324: Fixed the duplicate "Target system" columns in the Data Explorer
-* 447039: Fixed an issue where the FK picker could enter an inconsistent state
+- 447713: Fixed a styling issue with the login button
+- 449124: Fixed the declaration of the metadata service
+- 447723: Fixed an issue with additional columns in a grouped table view
+- 442324: Fixed the duplicate "Target system" columns in the Data Explorer
+- 447039: Fixed an issue where the FK picker could enter an inconsistent state
 
 ### March 11, 2024
 The v92 branch has been updated with fixes for the following issues.
