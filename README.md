@@ -6,11 +6,11 @@
 
 ### May 6, 2024
 
-The package versions have been updated to 9.2.1.
-
 We are integrating [Compodoc](https://compodoc.app/) to provide Angular documentation for our components. Please see the [Documentation](#documentation) section for more information on how to generate documentation.
 
-The v92 branch has been updated with fixes for the following issues.
+The package versions have been updated to 9.2.1.
+
+The `v92` branch has been updated with fixes for the following issues.
 
 **Important**: Integrating these changes will require a server-side hotfix for the issue 454356 to be installed.
 
