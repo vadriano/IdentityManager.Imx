@@ -12,7 +12,7 @@ The package versions have been updated to 9.2.1.
 
 The `v92` branch has been updated with fixes for the following issues.
 
-**Important**: Integrating these changes will require a server-side hotfix for the issue 454356 to be installed.
+**Important**: Integrating these changes will require a server-side hotfix for the issue 454356 to be installed if the server has *not* been upgraded to 9.2.1.
 
 - 454675: Fixed an issue where sometimes a blank screen was displayed instead of the login page
 - 446439: Fixed the preselection of a child service category on the new request page
