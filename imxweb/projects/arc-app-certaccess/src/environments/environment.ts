@@ -30,7 +30,7 @@
 
 export const environment = {
   production: false,
-  clientUrl: 'http://localhost:8182',
+  clientUrl: 'https://oneim901.lab.adrianoweb.com/ApiServer',
   appName: 'arc-app-certaccess',
   appVersion: '1.0.0',
 };

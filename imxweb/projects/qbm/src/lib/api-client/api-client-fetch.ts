@@ -29,6 +29,7 @@ import { ServerExceptionError } from '../base/server-exception-error';
 import { ServerError } from '../base/server-error';
 import { ClassloggerService } from '../classlogger/classlogger.service';
 import { TranslateService } from '@ngx-translate/core';
+import { isDevMode } from '@angular/core';
 
 export class ApiClientFetch implements ApiClient {
     constructor(
